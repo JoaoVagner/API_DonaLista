@@ -22,7 +22,8 @@
     	"monga/monga": "master"
     },
     "require-dev": {
-        "mockery/mockery": "0.7.*"
+        "mockery/mockery": "0.7.*",
+        "phpunit/phpunit": "3.7.*"
     },
     "suggest": {
         "mustache/mustache": "Allow Mustache templating with the Parser package",

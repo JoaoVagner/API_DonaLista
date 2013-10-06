@@ -27,16 +27,6 @@ class Mongaconnector {
      */
     public static $database;
 
-    public function __construct() {
-        \Fuel\Core\Config::load('db');
-        $mongoConfig = \Fuel\Core\Config::get('mongo.default');
-
-        self::setDatabase($mongoConfig['database']);
-        self::setPassword($mongoConfig['password']);
-        self::setUsername($mongoConfig['username']);
-        self::setDsn($mongoConfig['dsn']);
-    }
-
     /**
      * 
      * connection Monga and return object database
@@ -44,6 +34,15 @@ class Mongaconnector {
      * @return Object Monga
      */
     public static function connection() {
+
+        \Fuel\Core\Config::load('db');
+        $mongoConfig = \Fuel\Core\Config::get('mongo.default');
+
+        self::setDatabase($mongoConfig['database']);
+        self::setPassword($mongoConfig['password']);
+        self::setUsername($mongoConfig['username']);
+        self::setDsn($mongoConfig['dsn']);
+
         //connection mongaDB
         $connection = Monga::connection(self::getDsn(), array(
                         //'username' => self::getUsername(),
@@ -54,31 +53,39 @@ class Mongaconnector {
     }
 
     /**
-     * select database using Monga ORM
+     * select database;
      * 
      * @return object Monga
      */
-    public function database() {
+    public static function database() {
         $conn = self::connection();
-        $database = $conn->database(self::getDatabase());
-
-        return $database;
+        return $conn->database(self::getDatabase());
     }
 
-    public function setUsername($username) {
-        $this->username = $username;
+    /**
+     * 
+     * @return Object Collection
+     */
+    public static function collection($collection) {
+        $database = self::database();
+
+        return $database->collection($collection);
     }
 
-    public function setPassword($password) {
-        $this->password = $password;
+    public static function setUsername($username) {
+        self::$username = $username;
     }
 
-    public function setDatabase($database) {
-        $this->database = $database;
+    public static function setPassword($password) {
+        self::$password = $password;
     }
 
-    public function setDsn($dsn) {
-        $this->dsn = $dsn;
+    public static function setDatabase($database) {
+        self::$database = $database;
+    }
+
+    public static function setDsn($dsn) {
+        self::$dsn = $dsn;
     }
 
     public static function getUsername() {

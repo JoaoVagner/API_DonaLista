@@ -9,6 +9,8 @@ return array(
         'default' => array(
             'hostname' => 'localhost',
             'database' => 'donalista',
+            'username' => 'root',
+            'password' => 'sucesso',
             'dsn' => 'mongodb://localhost'
         ),
         // List your own groups below.
