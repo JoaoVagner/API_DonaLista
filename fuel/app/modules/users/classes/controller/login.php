@@ -6,7 +6,7 @@ class Controller_Index extends \Controller_Rest {
 
     
     public function action_test() {
-        $connMonga = \Mongaconnector::connection();
+
         
         return $this->response(array(
                     'foo' => \Input::get('foo'),

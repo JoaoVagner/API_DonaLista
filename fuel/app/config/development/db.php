@@ -9,6 +9,7 @@ return array(
         'default' => array(
             'hostname' => 'localhost',
             'database' => 'donalista',
+            'dsn' => 'mongodb://localhost'
         ),
         // List your own groups below.
         'my_mongo_connection' => array(
